@@ -1,0 +1,838 @@
+package com.mycompany.chainstore;
+import java.util.Scanner;
+import java.io.File;  
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.*;
+import java.io.IOException;
+import java.time.*;
+import java.time.format.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+public class ChainStore {
+    public static void main(String[] args){
+        store();
+    }
+
+
+    public static void store(){
+        System.out.println("\u001B[33m"+"===========welcome to Stor Chain==========="+"\u001B[0m");
+        System.out.println("choice one item of this category");
+        System.out.println("a.main admin");
+        System.out.println("b.admins");
+        System.out.println("c.castomer user");
+        Scanner inputchoice=new Scanner(System.in);
+        Scanner inputsecone=new Scanner(System.in);
+
+        String choice=inputchoice.nextLine();
+        String choicesecm;
+
+        switch (choice) {
+            case "a":
+                System.out.println("\u001B[33m"+"----wellcome to the main admin section----"+"\u001B[0m");
+                mainadmin md =new mainadmin();
+                md.options();
+                break;
+            case "b":
+                System.out.println("\u001B[33m"+"-----wellcom to section admin-----"+"\u001B[0m");
+                 adminofstore as =new adminofstore();
+                as.optionofadmin();
+                //adminofstore.optionofadmin();
+                break;
+            case "c":
+                 System.out.println("\u001B[33m"+"-----wellcome to section user-----"+"\u001B[0m");
+                user us =new user();
+                 us.eoption();
+                 
+                 break;
+        
+            default:
+            System.out.println("no exists option in this list");
+            
+                break;
+        }
+    }
+
+ 
+}
+
+
+//class main
+class mainadmin  {
+    public static List<String> listname= new ArrayList<String>();
+    static String listfile="listfile.txt";
+     
+     public static void main(String[] args){
+        
+         //addstor();
+ 
+     }
+     public void options(){
+        String keyy="";
+        Scanner inkey =new Scanner(System.in);
+        System.out.println("\u001B[36m"+"----view list----"+"\u001B[0m");
+        System.out.println("a.add store");
+        System.out.println("b.add admin");
+        System.out.println("c.see all data");
+        System.out.println("d.exit of the app");
+        keyy=inkey.nextLine();
+        switch(keyy){
+            case "a":
+                addstor();
+                break;
+            case "b":
+               addadmin();
+               break;
+            case "c":
+                detailsofstor();
+                break;
+            case "d":
+              break;
+               
+        }
+     }
+ 
+   public  void addstor(){
+         try{
+         File listsotre =new File("name_store.txt");
+         String name ="",address,filename,names;
+         int zipcode,vat;
+         long phone;
+         boolean exit=false;
+         Scanner input=new Scanner(System.in);
+         Scanner inname=new Scanner(System.in);
+         Scanner intype =new Scanner(System.in);
+         Scanner Phone =new Scanner(System.in); 
+         Scanner inputzip =new Scanner(System.in);
+         Scanner inputvat =new Scanner(System.in);
+         Scanner inaddress =new Scanner(System.in);
+     
+         String b;
+         System.out.println("++see option++");
+         System.out.println("a.add stor");
+         //.out.println("B.delete stor");
+         System.out.println("b.exit");
+         b=input.nextLine();
+         switch(b){
+             case "a":
+                do {
+
+                 System.out.println("enter stor name:");
+                 name=inname.nextLine();
+                 System.out.println("ente phone number:");
+                 phone =Phone.nextLong();               
+                 System.out.println("zip code:");
+                 zipcode=inputzip.nextInt();
+                 System.out.println("street address:");
+                 address=inaddress.nextLine();
+                 System.out.println("vat number:");
+                 vat=inputvat.nextInt();
+                 
+                 FileWriter fWriter =new FileWriter(listsotre,true);
+                 fWriter.append("name: "+name+"\n"+"phone: "+String.valueOf(phone)+"\n"+"zip code: "+String.valueOf(zipcode)+"\n"+"address: "+address+"\n"+"vat: "+String.valueOf(vat));
+                 System.out.println("\u001B[32m"+"ur datails is regestered"+"\u001B[0m");
+                 fWriter.close();
+                 
+                 System.out.println("\u001B[32m" +"u can see here"+"\u001B[0m");
+                 System.out.println("name: "+name+"\n"+"phone: "+String.valueOf(phone)+"\n"+"zip code: "+String.valueOf(zipcode)+"\n"+"address: "+address+"\n"+"vat: "+String.valueOf(vat));
+                 System.out.println("\u001B[36m"+"do u want exit ,enter true"+"\u001B[0m");
+                 exit=intype.nextBoolean();
+                } while (exit==false);
+                    break;//end case
+             case "b":  
+                 break;
+             case "C":
+         
+         }
+     }catch(IOException e){
+         System.err.println(e);
+     }
+ 
+ 
+     }
+ 
+ 
+    public void addadmin(){
+         File listadmin =new File("lsit_admin.txt");
+ 
+         String name,gender,level_education,leve_access;
+         String ch="";
+         short age;
+         long  phone_number;
+         boolean exit=false;
+         Scanner inputlevelaccss =new Scanner(System.in);
+         Scanner inch =new Scanner(System.in);
+         Scanner inputname=new Scanner(System.in);
+         Scanner inputgender =new Scanner(System.in);
+         Scanner input_level_education =new Scanner(System.in);
+         Scanner inputage=new Scanner(System.in);
+         Scanner inputphone=new Scanner(System.in);
+         Scanner intype =new Scanner(System.in);
+         System.out.println("\u001B[35m"+"++see option++"+"\u001B[0m");
+         System.out.println("a.add admin");
+         //System.out.println("B.delete admin");
+         System.out.println("c.exit");
+         ch=inch.nextLine();
+  
+         try{
+ 
+         switch (ch) {
+             case "a":
+                do{
+                   System.out.println("enter name");
+                    name=inputname.nextLine();
+                    System.out.println("enter gender:");
+                    gender =inputgender.nextLine();
+                     System.out.println("enter level education");
+                    level_education= input_level_education.nextLine();
+                    System.out.println("enter age:");
+                   age=inputage.nextShort();
+                 System.out.println("enter a phone number");
+                 phone_number =inputphone.nextLong();
+                 System.out.println("Set the access level, A ,B,C or D");
+                 leve_access=inputlevelaccss.nextLine();
+                 FileWriter fWriter =new FileWriter(listadmin,true);
+                 fWriter.append("name:"+name+"\n"+"level access: "+leve_access+"\n"+"gender: "+gender+"\n"+"level education: "+level_education+"\n"+"age: "+age+"\n"+"phone number: "+phone_number+"\n");
+                 fWriter.close();
+                 System.out.println("ur data is regstored now");
+                 System.out.println("do u want to the main page ,enter true");
+                 exit=intype.nextBoolean();
+ 
+                }while(exit ==false);
+                  ChainStore.store();
+                  break;
+             case "B":
+                 System.out.println("enter name of admin for deleteing");
+                 break;
+             case "c":
+                 
+             default:
+                 break;
+         }
+     }catch(Exception e){
+         e.printStackTrace();
+     }
+     
+     }
+ 
+     
+ 
+     static void detailsofstor(){
+        System.out.println("");
+         System.out.println("");//dally profit for any store
+
+       // System.exit(0);
+
+        //this is store in moon have 550$ profit
+        //"regstor_commity.csv"
+        try{
+            BufferedReader br =new BufferedReader(new FileReader("regstor_commity.csv"));
+            String ss ;
+            while ((ss=br.readLine())!=null) {
+                String[] sss=ss.split(",");
+                //System.out.println(ss);
+                System.out.println("of this store "+sss[0]+"this is product "+sss[1]+" this value "+sss[3]+" stored");
+                
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+ 
+ 
+ 
+     }
+ 
+       
+ }
+ 
+
+ class adminofstore {
+    //boolean exit=false;
+
+   static List <String> commodity =new ArrayList<String>();
+    Scanner incommodity =new Scanner(System.in);
+    String comcach;
+    
+    
+    public static void main(String[] args) {
+        String[] ss ={};
+        
+    
+    }
+
+
+   public void optionofadmin(){
+        String key="" ;
+        boolean exit=false;
+        Scanner inexit= new Scanner(System.in); 
+        Scanner inswitch =new Scanner(System.in);
+        do{
+        System.out.println("\u001B[36m"+"+++++see option+++++ "+"\u001B[0m");
+        System.out.println("a.add commodity");
+        System.out.println("b.search commodity");
+        System.out.println("c.see dally profit and moonly");
+        System.out.println("d.create and save factor");
+        System.out.println("for chose in option enter a or b or c or d if do u want to wellcome page enter mp ");
+        key =inswitch.nextLine();
+
+        switch (key) {
+            case "a":
+                add_commodity();
+                break;
+            case "b":
+                user nm =new user();
+                nm.search_commodity();
+                break;
+            case "c":
+               dally_profit();
+            case "mp":
+                ChainStore.store();
+                break;
+            case "d":
+                create_fucktor();
+            default:
+                break;
+        }
+        System.out.println("do u want exit enter true");
+        exit=inexit.nextBoolean();
+    }while(exit==false);
+      ChainStore.store();
+
+    }
+
+    public void add_commodity(){
+        String name,grouping,type,path="regstor_commity.csv";
+        int price;
+        Scanner incommodity =new Scanner(System.in);
+        Scanner inpr =new Scanner(System.in);
+        Scanner ingr=new Scanner(System.in);
+        Scanner intype=new Scanner(System.in);
+        Scanner inexte=new Scanner(System.in);
+        Scanner storeinput =new Scanner(System.in);
+
+        
+        String comcach;
+        boolean exit=false;
+        do {
+            try{
+            System.out.println("enter stor name ");
+            String storename=storeinput.nextLine();
+            System.out.println("enter name of commofity");
+            name =incommodity.nextLine();
+            System.out.println("enter price");
+            price =inpr.nextInt();
+            System.out.println("enter grouping");
+            grouping =ingr.nextLine();
+            System.out.println("enter type of commodity");
+            type =intype.nextLine();
+            if (new File(path).exists()) {
+                FileWriter fWriter =new FileWriter(new File(path),true);
+                fWriter.append(name+","+grouping+","+type+","+price+"\n");
+                fWriter.close();
+                
+            } else {
+                File nn =new File(path);
+                FileWriter fWriter =new FileWriter(new File(path),true);
+                fWriter.append(storename+","+name+","+grouping+","+type+","+price+"\n");
+                fWriter.close();
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            System.out.println("ur data is regstored");
+            System.out.println("do want back ,enter true");
+            exit =inexte.nextBoolean();
+        } while (exit==false);
+             optionofadmin();
+
+
+    }
+    static void searce_sample(){
+        String line = "";  
+        String splitBy = ",";
+        String chase ="chase";
+        try{
+        Scanner insearch=new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new FileReader("regstor_commity.csv"));  
+        Scanner cc =new Scanner(new File("regstor_commity.csv"));
+        cc.useDelimiter(",");
+        String searchcha;
+        
+        while((line =br.readLine())!=null){
+          
+            System.out.println("enter name for searching:");
+           searchcha =insearch.nextLine();
+           String[] sd= line.split(splitBy);
+            chase =cc.next();
+            if(chase.equals(searchcha)){
+                System.out.println("this is commdity is extes .whidh how much"+sd[3]);
+
+
+            }else{
+            System.out.println(chase);}
+            
+
+        }
+        System.out.println(cc.next());
+        System.out.println("enter name for searching commoity");
+        searchcha =insearch.nextLine();
+        
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+    }
+
+   public String name_seller_r,address_seller,address_buyer,name_buyer,name_product;
+       public int number_fucktor,price,amount;
+    public void create_fucktor(){
+        boolean exitt=false;
+        do{
+        
+
+        System.out.println("do u want create fucktor for buy if yes");
+        //String name_seller_r,address_seller,address_buyer,name_buyer,name_product;
+      // int number_fucktor,price,amount;
+        Scanner nameseller =new Scanner(System.in);
+        Scanner addressseller =new Scanner(System.in);
+        Scanner addressbuyer =new Scanner(System.in);
+        Scanner namebuyer =new Scanner(System.in);
+        Scanner nameproduct =new Scanner(System.in);
+        Scanner numberfucktor =new Scanner(System.in);
+        Scanner npuprice =new Scanner(System.in);
+        Scanner inputamount =new Scanner(System.in);
+        Scanner inputexitt =new Scanner(System.in);
+
+        
+
+        System.out.println("enter name of product");
+        name_product =nameproduct.nextLine();
+        System.out.println("entre price of product");
+        price =npuprice.nextInt();
+        System.out.println("enter amount of product");
+        amount =inputamount.nextInt();
+        System.out.println("enter number fucktor");
+        number_fucktor =numberfucktor.nextInt();
+        System.out.println("enter name of seller");
+        name_seller_r =nameseller.nextLine();
+        System.out.println("enter address of seller product");
+        address_seller=addressseller.nextLine();
+        System.out.println("enter name of buyer");
+        name_buyer =namebuyer.nextLine();
+        System.out.println("enter address buyer");
+        address_buyer =addressbuyer.nextLine();
+
+        try{
+
+            LocalDate date = LocalDate.now();
+
+    // Get the current time
+            LocalDateTime dateTime = LocalDateTime.now();            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = dateTime.format(formatter);
+        if(!new File("fucktor.txt").exists()){
+
+            File file =new File("fucktor.txt");
+            FileWriter fWriter =new FileWriter(file, true);
+            fWriter.append("time of regestor fuctor "+formattedDateTime+"\n"+"name of seller "+name_seller_r+"\n"+"address of seller "+address_seller+"\n"+"name of buyer "+name_buyer+"\n"+"address of buyer"+address_buyer+"\n"+"name of product"+name_product+"\n"+"price"+price+"\n"+"amount"+amount+"\n"+"number fucktor "+number_fucktor+"\n");
+            fWriter.close();
+
+
+        }else{
+            FileWriter fWriter =new FileWriter(new File("fucktor.txt"), true);
+            fWriter.append("time of regestor fuctor "+formattedDateTime+"\n"+"name of seller "+name_seller_r+"\n"+"address of seller "+address_seller+"\n"+"name of buyer "+name_buyer+"\n"+"address of buyer"+address_buyer+"\n"+"name of product"+name_product+"\n"+"price"+price+"\n"+"amount"+amount+"\n"+"number fucktor "+number_fucktor+"\n");
+            fWriter.close();
+            
+        }
+        
+        System.out.println("\u001B[36m"+"----FACKTOR----"+"\u001B[0m");
+        System.out.println("time of regestor fuctor "+formattedDateTime);
+        System.out.println("------------------------------------------");
+        System.out.println("name of seller "+name_seller_r);
+        System.out.println("address of seller "+address_seller);
+        System.out.println("------------------------------------------");
+        System.out.println("name of buyer "+name_buyer);
+        System.out.println("address of buyer "+address_buyer);
+        System.out.println("------------------------------------------");
+        System.out.println("name of product "+name_product);
+        System.out.println("------------------------------------------");
+        System.out.println("price "+price);
+        System.out.println("------------------------------------------");
+        System.out.println("amount "+amount);
+        System.out.println("------------------------------------------");
+        System.out.println("number fucktor "+number_fucktor);
+
+        System.out.println("factor is created and saved");
+        
+        print();
+       
+        System.out.println("do u want to exit ;enter true ");
+
+
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+    exitt=inputexitt.nextBoolean();
+}while(exitt==false);
+
+
+
+    }
+
+
+    static void dally_profit(){
+        System.out.println("");
+         System.out.println("");//dally profit for any store
+
+       // System.exit(0);
+
+        try{
+            BufferedReader br =new BufferedReader(new FileReader("added_tobag.txt"));
+            BufferedReader brr =new BufferedReader(new FileReader("profit.txt"));
+            FileReader fr = new FileReader("profit.txt");
+            File myObj = new File("profit.txt");
+            Scanner myReader = new Scanner(myObj);
+            int i;
+
+            String line;
+            String ss ;
+            while (myReader.hasNextLine()) {
+
+                String data = myReader.nextLine();
+                System.out.println(data);
+               
+
+                
+            }
+            System.out.print(" \n");
+
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       
+///
+ ///
+ ///
+///
+///
+ 
+     }
+    
+    static void edit_ditails_commodity(){
+
+    }
+
+    void print(){
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable(new Printable() {
+            public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+                if (page > 0) {
+                    return NO_SUCH_PAGE;
+                }
+                LocalDate date = LocalDate.now();
+
+                // Get the current time
+                        LocalDateTime dateTime = LocalDateTime.now();            
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        String formattedDateTime = dateTime.format(formatter);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.translate(pf.getImageableX(), pf.getImageableY());
+                g2d.drawString("time of regestor fuctor "+formattedDateTime ,20,50);
+                g2d.drawString("name of seller "+name_seller_r,20,63);
+                g2d.drawString("address of seller "+address_seller,20,73);
+                g2d.drawString("name of buyer "+name_buyer,20,83);
+                g2d.drawString("address of buyer "+address_buyer,20,93);
+                g2d.drawString("name of product "+name_product,20,103);
+                g2d.drawString("price "+price,20,113);
+                g2d.drawString("amount "+amount,20,123);
+                g2d.drawString("number fucktor "+number_fucktor, 20, 133);
+                return PAGE_EXISTS;
+            }
+        });
+        try {
+            job.print();
+        } catch (PrinterException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+}
+
+
+
+
+class user {
+    
+    public static void main(String[] args) {
+        //eoption(); 
+ }
+
+   public  void eoption(){
+        String stringoption;boolean exit=false;
+        Scanner inputeopton=new Scanner(System.in);
+        Scanner inexit =new Scanner(System.in);
+
+        do{
+
+        System.out.println("\u001B[36m"+"+++++see option+++++ "+"\u001B[0m");
+        System.out.println("a.see all store");
+        System.out.println("b.search commidty");
+        System.out.println("c.regseter order");
+        System.out.println("d.insert comment");
+        String condishenull="" ;
+        condishenull=inputeopton.nextLine();
+        switch(condishenull){
+            case "a":
+                 store();
+               break;
+            case "b":
+                search_commodity();
+                break;
+            case "c":
+                add_to_bag();
+                break;
+            case "d":
+               commnet();
+               break;
+            default :
+                 System.out.println("this is option not exite");
+                 eoption();
+        }
+        System.out.println("do u want to exit ");
+        exit =inexit.nextBoolean();
+
+        }while(exit==false);
+          eoption();
+
+    }
+    static void store(){
+        Scanner inputeopton=new Scanner(System.in);
+        Scanner inexit =new Scanner(System.in);
+        boolean exits=false;
+        do{
+           String data="";
+           String filename="nameodstor.txt";
+            File file =new File("nameodstor.txt");
+            try{
+            Scanner filereader =new Scanner(file);
+            FileWriter fWriter =new FileWriter(file,true);
+            Scanner input= new Scanner(System.in);
+            System.out.println("see all store name");
+            while (filereader.hasNextLine()) {
+                   data =filereader.nextLine();
+                   
+                  System.out.println(data);                 
+              
+            }
+           
+        }catch(Exception e){
+                e.printStackTrace();
+            }
+         System.out.println("do u want to exit ");
+         exits =inexit.nextBoolean();
+         
+         }while(exits==false);
+         
+    }
+
+    public String newsString;
+    static void follwed(){
+        boolean exit=false;
+        Scanner inexit =new Scanner(System.in);
+        do{
+        try{
+            String filename ="nameodstor.txt";
+            String searchworid,newsString;
+            
+            System.out.println("enter word comoareing:");
+            Scanner inputsearch= new Scanner(System.in);
+            searchworid =inputsearch.nextLine();
+            BufferedReader bfr =new BufferedReader(new FileReader("nameodstor.txt"));
+            String line;
+            String inp1,inp2;
+            inp1 =searchworid+" follwed";
+            FileWriter fWriter =new FileWriter(new File("stor_follwed.txt"),true);
+            int linenumber=1;
+             while ((line =bfr.readLine())!=null) {
+                if(line.contains(searchworid)){
+                    System.out.println("found "+searchworid+"\"in"+filename+" at line "+linenumber);
+                    String newstring =line.replace(searchworid, inp1);
+                    fWriter.append(newstring+"\n");  
+                }
+                linenumber++;
+ 
+             }
+             fWriter.close();
+             inputsearch.close();
+             bfr.close();
+         }catch(Exception e){
+            e.printStackTrace();
+         }
+         System.out.println("do u want to exit this ,enter true");
+         exit =inexit.nextBoolean();
+        }while(exit==false);
+        
+    }
+
+    public void search_commodity(){
+        boolean exit=false;
+        Scanner inext =new Scanner(System.in);
+        do {
+       
+       
+        //==========
+        Scanner inputeopton=new Scanner(System.in);
+        System.out.println("enter a nane for searching");
+        String query = inputeopton.next();
+        int lineCount = 0;
+        boolean found = false;
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("regstor_commity.csv"));
+            String line =br.readLine();
+            while(line !=null){
+               String[] ss =line.split(",");
+                lineCount++;
+                if(line.contains(query)){
+                    found=true;
+                    System.out.println(" there are "+ss[3] +" pieces of this product ("+ query +")");
+
+                }
+                line=br.readLine();
+            }
+            br.close();
+            if(!found){
+                System.out.println("عبارت " + query + " در فایل وجود ندارد.");
+            }    
+        }catch(Exception e){
+            e.printStackTrace();
+        }System.out.println("do u want back ,enter true");
+        exit =inext.nextBoolean();
+    }while(exit==false);
+        //eoption();
+
+    }
+
+public void add_to_bag(){
+    boolean exit=false;
+    String getname;
+    int value;
+    Scanner inext =new Scanner(System.in);
+    Scanner inputtobag =new Scanner(System.in);
+    Scanner inputeopton =new Scanner(System.in);
+    Scanner inputvalue =new Scanner(System.in);
+    Scanner inputstorneme =new Scanner(System.in);
+    Scanner inputprice =new Scanner(System.in);
+    File file =new File("added_tobag.txt");
+    File file2 =new File("story.csv");
+
+        do{
+            try{
+                FileWriter fWriter =new FileWriter(file,true);
+                FileWriter fWriter2 =new FileWriter(file2,true);
+                FileWriter fWriter3 = new FileWriter(new File("profit.txt"), true);
+                BufferedReader br =new BufferedReader(new FileReader("regstor_commity.csv"));
+                String line;
+                System.out.println("\u001B[36m"+"+++++see product+++++ "+"\u001B[0m");
+                while((line =br.readLine())!= null){
+                    String[] ss =line.split(",");
+                    System.out.println("product "+ss[0]+" price "+ss[3]);
+                }
+                System.out.println("do u want to add to bag");
+                System.out.println("enter store name");
+                String storname =inputstorneme.nextLine();
+                System.out.println("enter price of product ");
+                int enter_price =inputprice.nextInt();
+                System.out.println("enter name of productand append to my bag");
+                 getname =inputtobag.nextLine();
+                 System.out.println("Enter the required amount");
+                 value =inputvalue.nextInt();
+                 if(new File("added_tobag.txt").exists()){
+                    fWriter2.append("of this store "+storname+" buyed "+getname+" with value "+value);
+                    fWriter3.append("dally profit "+value*enter_price);
+                    fWriter.append(getname+" to this extent "+value+" added to bag\n");
+                    fWriter.close();
+                    fWriter3.close();
+                 }
+                 else{
+                    File filee =new File("added_tobag.txt");
+                    FileWriter fWritere =new FileWriter(file,true);
+                    fWritere.append(getname+" to this extent "+value+" added to bag\n");
+                    fWritere.close();
+                 }
+
+                 System.out.println("Your order has been registered");
+                 System.out.println("do u want to exit");
+                 exit =inext.nextBoolean();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+           
+        }while(exit == false);
+        inext.close();
+}
+
+
+    static void commnet(){
+        boolean exit=false;
+        Scanner inext =new Scanner(System.in);
+        do {
+        try{
+        Scanner inname =new Scanner(System.in);
+        Scanner inemail =new Scanner(System.in);
+        Scanner incomment =new Scanner(System.in);
+        Scanner inputproduct =new Scanner(System.in);
+        String name,email,comment,nameofproduct;
+        System.out.println("enter name: ");
+        name =inname.nextLine();
+        System.out.println("enter email");
+        email =inemail.nextLine();
+        System.out.println("enter product name for regster comment for qulity them");
+        nameofproduct =inputproduct.nextLine();
+        System.out.println("enter ur comment");
+        comment =incomment.nextLine();
+
+        System.out.println("ur comment is regesterd");
+        if(!new File("comment.txt").exists()){
+            File file =new File("comment.txt");
+            FileWriter fwWriter =new FileWriter(file,true);
+            fwWriter.append("name: "+name+"\n"+"email: "+email+"comment: "+comment+"\n");
+            fwWriter.close();
+            System.out.println("ur comment is regesterd");
+            }else{
+                FileWriter fwWriter =new FileWriter(new File("comment.txt"),true);
+                fwWriter.append("-----------------------------------------------------\n");
+                fwWriter.append("this is comment regseterd for thsi product"+nameofproduct+"name: "+name+"\n"+"email: "+email+"\n"+"comment: "+comment+"\n");
+                fwWriter.close();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+            System.out.println("do u want to the exte? if u want enter true");
+            exit =inext.nextBoolean();
+        } while (exit ==false);
+        //closing the loop and exit from them
+        //eoption();
+
+    }
+    
+}
+
+
